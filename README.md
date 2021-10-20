@@ -3,107 +3,107 @@ Java implementation of Omron FINS communication protocol
 
 # Documentation
 
-## `public interface Cp1lFins`
+<div style='padding:0.1em; background-color:#E9D8FD; color:#69337A'>
+  ## `public interface Cp1lFins`
 
-2021 Sergio S. - sergi.ss4@gmail.com
+  ## `void connect() throws Exception`
 
-## `void connect() throws Exception`
+  Establishes connection with the device
 
-Establishes connection with the device
+   * **Exceptions:** `Exception` — Error opening connection
 
- * **Exceptions:** `Exception` — Error opening connection
+  ## `boolean isConnected()`
 
-## `boolean isConnected()`
+  Connection status
 
-Connection status
+   * **Returns:** true connected
 
- * **Returns:** true connected
+  ## `void disconnect()`
 
-## `void disconnect()`
+  Close current connection
 
-Close current connection
+  ## `ControllerData getControllerData() throws Exception`
 
-## `ControllerData getControllerData() throws Exception`
+  Controller information data
 
-Controller information data
+   * **Returns:** ControllerData
+   * **Exceptions:** `Exception` — Error getting ControllerData
 
- * **Returns:** ControllerData
- * **Exceptions:** `Exception` — Error getting ControllerData
+  ## `boolean read(int position, int bit) throws Exception`
 
-## `boolean read(int position, int bit) throws Exception`
+  Read the state of the indicated bit
 
-Read the state of the indicated bit
+   * **Parameters:**
+     * `position` — Memory position
+     * `bit` — Bit position
+   * **Returns:** bit status
+   * **Exceptions:** `Exception` — Error reading
 
- * **Parameters:**
-   * `position` — Memory position
-   * `bit` — Bit position
- * **Returns:** bit status
- * **Exceptions:** `Exception` — Error reading
+  ## `boolean read(CIO cio) throws Exception`
 
-## `boolean read(CIO cio) throws Exception`
+  Read the state of the indicated bit
 
-Read the state of the indicated bit
+   * **Parameters:** `cio` — Channel Input Output
+   * **Returns:** bit status
+   * **Exceptions:** `Exception` — Error reading
 
- * **Parameters:** `cio` — Channel Input Output
- * **Returns:** bit status
- * **Exceptions:** `Exception` — Error reading
+  ## `void write(int position, int bit, boolean value) throws Exception`
 
-## `void write(int position, int bit, boolean value) throws Exception`
+  Write the status of the indicated input
 
-Write the status of the indicated input
+   * **Parameters:**
+     * `position` — Memory position
+     * `bit` — Bit position
+     * `value` — New state
+   * **Exceptions:** `Exception` — Error writing
 
- * **Parameters:**
-   * `position` — Memory position
-   * `bit` — Bit position
-   * `value` — New state
- * **Exceptions:** `Exception` — Error writing
+  ## `void write(CIO cio, boolean value) throws Exception`
 
-## `void write(CIO cio, boolean value) throws Exception`
+  Write the status of the indicated input
 
-Write the status of the indicated input
+   * **Parameters:**
+     * `cio` — Channel Input Output
+     * `value` — new state
+   * **Exceptions:** `Exception` — Exception Error writing
 
- * **Parameters:**
-   * `cio` — Channel Input Output
-   * `value` — new state
- * **Exceptions:** `Exception` — Exception Error writing
+  ## `void setInputListener(InputListener listener)`
 
-## `void setInputListener(InputListener listener)`
+   * **Parameters:** `listener` — Interface to notify subscription events
 
- * **Parameters:** `listener` — Interface to notify subscription events
+  ## `InputListener getInputListener()`
 
-## `InputListener getInputListener()`
+   * **Returns:** Interface where subscription events are notified
 
- * **Returns:** Interface where subscription events are notified
+  ## `void subscribe(CIO cio)`
 
-## `void subscribe(CIO cio)`
+  Adds a subscription to the state change events of the indicated bit
 
-Adds a subscription to the state change events of the indicated bit
+   * **Parameters:** `cio` — Channel Input Output
 
- * **Parameters:** `cio` — Channel Input Output
+  ## `boolean unsuscribe(CIO cio)`
 
-## `boolean unsuscribe(CIO cio)`
+  Remove bit subscription
 
-Remove bit subscription
+   * **Parameters:** `cio` — Channel Input Output
+   * **Returns:** true if there was a subscription
 
- * **Parameters:** `cio` — Channel Input Output
- * **Returns:** true if there was a subscription
+  ## `void subscribe(int position, int bit)`
 
-## `void subscribe(int position, int bit)`
+  Adds a subscription to the state change events of the indicated bit
 
-Adds a subscription to the state change events of the indicated bit
+   * **Parameters:**
+     * `position` — Memory position
+     * `bit` — Bit position
 
- * **Parameters:**
-   * `position` — Memory position
-   * `bit` — Bit position
+  ## `void unsuscribe(int position, int bit)`
 
-## `void unsuscribe(int position, int bit)`
+  Remove bit subscription
 
-Remove bit subscription
+   * **Parameters:**
+     * `position` — Memory position
+     * `bit` — Bit position
 
- * **Parameters:**
-   * `position` — Memory position
-   * `bit` — Bit position
+  ## `void unsuscribeAll()`
 
-## `void unsuscribeAll()`
-
-Remove all bit subscriptions
+  Remove all bit subscriptions
+</div>
